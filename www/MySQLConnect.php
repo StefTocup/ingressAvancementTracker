@@ -4,11 +4,10 @@
         $db_user = "ingress";
         $db_pass = "XXXXXXXX";
 
-        $mysql_cnx = mysql_connect($db_host, $db_user , $db_pass);
-        if (!$mysql_cnx)
-        {
-                echo "Impossible de se connecter a $db<BR>";
-                exit (-1);
-        }
-        mysql_select_db($db);
+		$mysqli = new mysqli( $db_host, $db_user , $db_pass, $db);
+		if ($mysqli->connect_errno) {
+			echo "Echec lors de la connexion à MySQL  : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+			exit(-1);
+		}
+        
 ?>

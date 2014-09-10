@@ -3,6 +3,7 @@
 //<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 //<html xmlns="http://www.w3.org/1999/xhtml">
 ?>
+
 <html>
 <head>
 <title><?php echo @$title ?> </title>
@@ -24,13 +25,15 @@
 		}
 	
 		print ("<span><a href=saisieAvancement.php>Saisie Avancement</a></span>\n");
-		print ("<span><a href=medals.php>Medals</a></span>\n");
+		print ("<span><a href=medals.php>Medailles</a></span>\n");
 		print ("<span><a href=historique.php>Historique</a></span>\n");
+		print ("<span><a href=statistiques.php>Statistiques</a></span>\n");
+		print ("<span><a href=graphiques.php>Graphiques</a></span>\n");
 		
 	}
 	if ( @$_GET["dontShowLogin"] != 1 && @$dontShowLogin != 1 )
 	{
-		print ("<span>$bandeauLogin</span>\n");
+		print ("<span>".@$bandeauLogin."</span>\n");
 	}
 ?>
 <div>

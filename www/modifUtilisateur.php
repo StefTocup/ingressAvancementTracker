@@ -19,7 +19,7 @@
 	$utilisateur    = decode_chaine ( $utilisateur );
 
 	//Seul les admins ont le droit de modifier un utilisateur différent du leur
-	if ( $security["admin"] == 1 
+	if ( @$security["admin"] == 1 
 	or $security["login"] == $utilisateur)
 	{
 		if ( $NewPasswd != "" and $NewPasswd != $NewPasswdConf )
@@ -36,9 +36,9 @@
 
 
 				$sqlSelect = "select login from users where login = '".$utilisateur."'";
-				$res = mysql_query($sqlSelect);
+				$res = $mysqli->query($sqlSelect);
 
-				if ( $row = mysql_fetch_array( $res) )
+				if ( $row = $res->fetch_assoc() )
 				{
 					$login = $row["login"];
 					$NewPasswd = hashPasswd( urldecode($login), $NewPasswd );
@@ -49,16 +49,16 @@
 
 			if ( $utilisateur != "" )
 			{
-				$sqlUpdate .= " where login = '".mysql_escape_string( $utilisateur )."' ";
-				mysql_query( $sqlUpdate );
+				$sqlUpdate .= " where login = '".$mysqli->real_escape_string( $utilisateur )."' ";
+				$mysqli->query( $sqlUpdate );
 			}
 
 		}
 	// Récupération des données dans la base
-	$sqlSelect = "select * from users where login = '".mysql_escape_string( $utilisateur )."' ";
+	$sqlSelect = "select * from users where login = '".$mysqli->real_escape_string( $utilisateur )."' ";
 
-	$res = mysql_query( $sqlSelect );
-	if ( $row = mysql_fetch_array( $res ) )
+	$res = $mysqli->query( $sqlSelect );
+	if ( $row = $res->fetch_assoc() )
 	{
 		$utilisateur = $row["login"];
 	}

@@ -127,10 +127,10 @@ if ( $login != "" )
 		$hashPasswd = ""; 
 		//TODO : mysql_escape_string
 		$sql = "select login from users where login = '".urldecode($login)."'";
-		$res = mysql_query( $sql );
-		if ( mysql_num_rows( $res ) > 0 )
+		$res = $mysqli->query( $sql );
+		if ( $res->num_rows > 0 )
 		{
-			if ( $row = mysql_fetch_array( $res ) )
+			if ( $row = $res->fetch_assoc() )
 			{
 				$hashPasswd = hashPasswd( urldecode($login), $passwd );
 			}
@@ -138,10 +138,10 @@ if ( $login != "" )
 	}
 	if ( $hashPasswd != "" )
 	{
-		//TODO : mysql_escape_string		
+		//TODO : mysql_escape_string
 		$sql = "select * from users where login = '".urldecode($login)."' and passwd = '$hashPasswd'";
-		$res = mysql_query( $sql );
-		if ( $row = mysql_fetch_array( $res ) )
+		$res = $mysqli->query( $sql );
+		if ( $row = $res->fetch_assoc() )
 		{
 			$security["status"]           = "Passed";
 			$security["login"]            = $row["login"];
