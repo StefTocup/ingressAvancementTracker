@@ -1,0 +1,39 @@
+body { font-family: 'Coda', 'cursive'; background-color: #000000; font-size: 16px; color: #fdd73c; padding: 0px; margin: 0px; }
+table { color: #fdd73c; text-shadow: 0px 0px 4px #fdd73c; font-size: 1em; }
+table.main { width: 640px; }
+table th, h2 { font-weight: normal; text-align: left; color: #00c1b8; text-shadow: 0px 0px 4px #00c1b8; height: 24px; line-height: 24px; padding: 4px; text-align: left; }
+table th { font-size: 0.9em; }
+table td { height: 24px; line-height: 24px; padding: 4px; text-align: right; }
+table tr td:nth-child(5), table tr td.tac { text-align: center; }
+table tr td.hr { height: 0px; border-bottom: 1.4px solid #fdd73c; }
+table tr td.moredata { font-size: 0.9em; text-align: right; color: #00c1b8; text-shadow: 0px 0px 4px #00c1b8; }
+table tr.moredata { display: none; }
+table tr.moredata.auto { display: table-row; }
+table tr.moredata td, td.small { height: 18px; line-height: 18px; font-size: 0.8em; padding: 0px 2px; }
+table tr.moredata td:last-child, table tr td.tal { text-align: left; }
+table tr.moredata td span { color: #00c1b8; text-shadow: 0px 0px 4px #00c1b8; }
+table tr td img { margin: -8px 0px -8px 0px; }
+table tr td.tar { text-align: right; }
+table.medals tbody tr th, table.medals tbody tr td { text-align: right; }
+table.medals tbody tr th:first-child, table.medals tbody tr td:first-child { text-align: left; }
+a { color: #fdd73c; text-decoration: underline; }
+input { border: 1.4px solid #00c1b8; padding: 0px 2px; color: #00c1b8; font-family: 'Coda', 'cursive'; background: #000000; text-align: right; width: 66px; font-size: 0.8em; }
+input[type="submit"] { border: 1px solid #fdd73c; color: #fdd73c; text-align: center; padding: 4px 10px; width: auto; }
+input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:focus { background-color: #222222; }
+input[type="button"] { border: 1px solid #fdd73c; color: #fdd73c; text-align: center; padding: 4px 10px; width: auto; }
+input[type="button"]:hover, input[type="button"]:active, input[type="button"]:focus { background-color: #222222; }
+input[type="file"] { width: 1px; height: 1px; position: fixed; top: -5px; left: -5px; }
+label { border: 1px solid #fdd73c; color: #fdd73c; text-shadow: none; text-align: center; padding: 4px 10px; width: auto; font-size: 0.8em; margin-left: 20px; }
+.highlight { color: #02bf02; text-shadow: 0px 0px 4px #02bf02; }
+.progressbar { width: 100px; height: 18px; position: relative; border: 1.4px solid #0491d0; }
+.progressbar div { position: absolute; height: 18px; top: 0px; left: 0px; }
+.httpquery { width: 540px; margin: 0px auto; font-size: 0.8em; text-align: center; }
+.httpquery input { width: 400px; }
+.progressbar.bronze { border-color: #49200b; }
+.progressbar.silver { border-color: #505050; }
+.progressbar.gold { border-color: #6d4d28; }
+.progressbar.platinum { border-color: #222222; }
+.progressbar.bronze div { background-color: #49200b; }
+.progressbar.silver div { background-color: #505050; }
+.progressbar.gold div { background-color: #6d4d28; }
+.progressbar.platinum div { background-color: #222222; }
