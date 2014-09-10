@@ -2,7 +2,7 @@
         $db = "ingress";
         $db_host = "localhost";
         $db_user = "ingress";
-        $db_pass = "iunsgerress";
+        $db_pass = "XXXXXXXX";
 
         $mysql_cnx = mysql_connect($db_host, $db_user , $db_pass);
         if (!$mysql_cnx)
