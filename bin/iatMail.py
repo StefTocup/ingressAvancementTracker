@@ -67,7 +67,8 @@ if __name__ == "__main__":
 					listeChampsOCR[ "Pseudo" ] = m.group( 1 )
 			
 			# 1,849,264 AP 12,400,000 AP-
-			m = re.search( '([\d,]+) AP [\d,]+ AP', line )
+			# 6,022,816 AP [6,000,000 AP
+			m = re.search( '^([\d,]+) AP .+ AP', line )
 			if ( m ) :
 				AP = m.group(1)
 				AP = AP.replace(",", "" )
@@ -96,8 +97,7 @@ if __name__ == "__main__":
 	# Recherche dans la base ingress des champs à rechercher
 	try:
 		# Connexion a la base de donnée
-		cnx = MySQLdb.connect('localhost', 'ingress', 'iunsgerress', 'ingress');
-		#cnx = MySQLdb.connect(hostDB, userDB, passDB, nameDB)
+		cnx = MySQLdb.connect(hostDB, userDB, passDB, nameDB)
 		cur = cnx.cursor()
 		# Vérification de l'existence de l'utilisateur dans la base
 		sql = "SELECT id_joueur, mail from users where login='"+ listeChampsOCR["Pseudo"] +"'"

@@ -14,6 +14,7 @@
 	}	
 	$NewPasswd		= urldecode(@$_POST["NewPasswd"]);
 	$NewPasswdConf  = urldecode(@$_POST["NewPasswdConf"]);
+	$NewMail        = urldecode(@$_POST["NewMail"]);
 
 	require_once("libTranscode.php");
 	$utilisateur    = decode_chaine ( $utilisateur );
@@ -33,8 +34,6 @@
 		
 			if ( $NewPasswd != "" )
 			{
-
-
 				$sqlSelect = "select login from users where login = '".$utilisateur."'";
 				$res = $mysqli->query($sqlSelect);
 
@@ -45,6 +44,11 @@
 					$sqlUpdate .= "$sep passwd = '$NewPasswd' ";
 					$sep=",";
 				}
+			}
+
+			if ( $NewMail != "" and filter_var( $NewMail, FILTER_VALIDATE_EMAIL ) )
+			{
+				$sqlUpdate .= "$sep mail = '$NewMail' ";
 			}
 
 			if ( $utilisateur != "" )
@@ -61,10 +65,12 @@
 	if ( $row = $res->fetch_assoc() )
 	{
 		$utilisateur = $row["login"];
+		$mail        = $row["mail"];
 	}
 	else
 	{
 		$utilisateur = "";
+		$mail        = "";
 	}
 
 
@@ -82,6 +88,7 @@
 			<tr><td>Utilisateur</td><td><?php echo $utilisateur?></td></tr>
 			<tr><td>Mot de Passe</td><td><input type=password name=NewPasswd></input></td></tr>
 			<tr><td>Confirmation Mot de Passe</td><td><input type=password name=NewPasswdConf></input> </td></tr>
+			<tr><td>Adresse Mail</td><td><input type=text name=NewMail value="<?php echo $mail ?>"></input></td></tr>
 			<tr><td></td><td><input type=submit value=Modifier /></td></tr>
 		</table>
 	</form>

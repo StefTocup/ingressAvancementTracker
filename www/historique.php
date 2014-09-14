@@ -40,7 +40,7 @@ function affiche_ligne( $date, $liste_compteurs, $tableau_donnees )
 			$liste_compteurs[ $row['id_compteur'] ][ "lib_medaille"]    = $row['lib_medaille'];
 		}
 		
-		$sql = "select date, id_compteur, valeur from historique where id_joueur = '$id_joueur' order by date, id_compteur";
+		$sql = "select date, id_compteur, valeur from historique where id_joueur = '$id_joueur' order by date DESC , id_compteur";
 		
 		$res = $mysqli->query( $sql );
 		$date_old = "";

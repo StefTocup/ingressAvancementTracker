@@ -10,6 +10,13 @@
 	{
 		$utilisateur = urldecode(@$_POST["utilisateur"]);
 		if ( @$utilisateur == "") { $message = "Nom d'utilisateur incorrect"; }
+		else
+		{
+			$sql = "select count(*) as compte from users where login ='".$utilisateur."'";
+			$res = $mysqli->query( $sql );
+			$row = $res->fetch_assoc();
+			if ( $row["compte"] > 0 ) { $message = "Utilisateur d&eacute;j&agrave; existant"; }
+		}
 		if ( $NewPasswd == ""  )	 { $message = "Le Mot de passe ne peut pas être vide"; }
 		if ( $NewPasswd != $NewPasswdConf ) 	{	$message="Les deux mots de passe ne doivent pas être diff&eacute;rents<br/>";}
 		if ( $message == "" )
