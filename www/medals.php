@@ -6,18 +6,32 @@ function affiche_ligne( $lib_medaille,  $tableau_ligne, $valeur_actuelle = 0)
 {
 	echo "<tr>";
 	echo "<td>".$lib_medaille."</td>";
+	$valeur_min = 0;
+	$valeur_max = "";
 	foreach ( $tableau_ligne as $valeur )
 	{
 		if ( $valeur_actuelle >= $valeur )
 		{
+			$valeur_min = $valeur;
 			$classe = "highlight";
 		}
 		else
 		{
+			if ( $valeur_max == "") { $valeur_max = $valeur; }
 			$classe = "";
 		}
 		echo "<td class=\"$classe\">".$valeur."</td>";
 		
+	}
+	if ( $valeur_actuelle != 0)
+	{
+		if ( $valeur_max != "" )
+			{
+				$pourcentage_intra_niveau = 100.0 * ( $valeur_actuelle - $valeur_min) / ( $valeur_max - $valeur_min);
+				echo "<td alt=\"progression\"><div class=\"progressbar niveau\"><div style=\"width: ".sprintf("%0.2f", $pourcentage_intra_niveau)."%\"></div></td>";
+				echo "<td>($valeur_actuelle)</td>";
+				
+			}
 	}
 	
 	echo "</tr>";
@@ -67,7 +81,6 @@ echo "<center>";
 		$old_lib_medaille = $row["lib_medaille"];
 		$old_id_compteur = $row["id_compteur"];
 	}
-	//affiche_ligne( $old_lib_medaille, $tableau_ligne );
 	affiche_ligne( $old_lib_medaille, $tableau_ligne, @$liste_compteurs[ $old_id_compteur ][ "derniere_valeur"] );
 	echo "</table>";
 ?>

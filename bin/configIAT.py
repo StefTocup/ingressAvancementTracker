@@ -1,10 +1,10 @@
 
 hostDB = 'localhost'
 userDB = 'ingress'
-passDB = 'XXXXXX'
+passDB = 'iunsgerress'
 nameDB = 'ingress'
 
-gmail_user = 'XXXXXXXX@gmail.com'
-gmail_pwd  = 'XXXXXXXXXXX'
+gmail_user = 'iat.jarvis@gmail.com'
+gmail_pwd  = 'JarvisIsANiceGuy'
 
 tempDir = '/home/stef/Prog/ingress/temp/'

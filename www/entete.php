@@ -26,6 +26,7 @@
 	
 		print ("<span><a href=saisieAvancement.php>Saisie Avancement</a></span>\n");
 		print ("<span><a href=medals.php>Medailles</a></span>\n");
+		print ("<span><a href=niveaux.php>Niveaux</a></span>\n");
 		print ("<span><a href=historique.php>Historique</a></span>\n");
 		print ("<span><a href=statistiques.php>Statistiques</a></span>\n");
 		print ("<span><a href=graphiques.php>Graphiques</a></span>\n");

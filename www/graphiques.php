@@ -22,11 +22,13 @@ if ( @$security["login"] != "" )
 		var j = (j=i.length)>3?j%3:0;
 		return s+(j?i.substr(0,j)+t:"")+i.substr(j).replace(/(\d{3})(?=\d)/g,"$1"+t)+(c?d+Math.abs(n-i).toFixed(c).slice(2):"");
 	}
-    var mycolors = new Array('aqua', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'yellow', 'blue', 'white', 'black', 'navy');
+//    var mycolors = new Array('aqua', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'yellow', 'blue', 'white', 'black', 'navy');
+    var mycolors = new Array('#00ffff', '#ff00ff', '#808080', '#008000', '#00ff00', '#ad5c33', '#808000', '#ffa500', '#800080', '#ff0000', '#c0c0c0', '#008080', '#ffff00', '#ffffff', '#7fffd4', '#d3d3d3', '#90ee90', '#ff8c00', '#ff4500', '#9370db', '#cd5c5c', '#ffffe0', '#9acd32', '#d2b48c', '#faf0e6');
+    var hiscolors = new Array('#00cccc', '#cc00cc', '#666666', '#006600', '#00cc00', '#8a4a29', '#666600', '#cc8400', '#660066', '#cc0000', '#9a9a9a', '#006666', '#cccc00', '#cccccc', '#66ccaa', '#a9a9a9', '#73be73', '#cc7000', '#cc3700', '#765aaf', '#a44a4a', '#ccccb3', '#7ba428', '#a89070', '#c8c0b8');    
     $(function () {
         $('#container').highcharts({
             chart: {
-                type: 'spline',
+                type: 'line',
                 //scroll problem
                 //zoomType: 'x',
                 backgroundColor: '#000000',
@@ -61,7 +63,6 @@ if ( @$security["login"] != "" )
             yAxis: [
                 {
                     id: 'AP',
-                    showEmpty: false,
                     floor: 0,
                     labels: {
                         style: {
@@ -157,7 +158,10 @@ echo "                    ],
 
 		}
 ?>
-                { visible: false,
+                { 
+<?php
+					if ( $row["lib_medaille"] != "AP" ) { echo "visible: false,"; }
+?>
                     name: '<?php echo $row["lib_medaille"]."(@".$security["login"].")" ?>)',
                     yAxis: '<?php echo $row["lib_medaille"] ?>',
                     color: mycolors[<?php echo $row["id_compteur"] ?>],
@@ -177,7 +181,6 @@ $old_valeur   = $row["valeur"];
     });
     </script>
 <?php
-// end if ( @$security["login"] != "" )
 }
 	require_once("enqueue.php");
 ?>

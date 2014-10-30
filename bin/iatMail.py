@@ -16,6 +16,8 @@ from datetime import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+# suppression de fichier
+import os
 # Import de la config
 from configIAT import *
 cnx=None
@@ -41,15 +43,15 @@ if __name__ == "__main__":
 				ts = datetime.strptime( dateImport, '%Y%m%d %H%M%S')
 				dateImport = datetime.strftime( ts, '%Y-%m-%d %H:%M:%S' )
 			# Sauvegarde de la piece jointe dans un fichier temporaire
-			with open(filename, 'wb') as fp:
+			with open(tempDir+"/"+filename, 'wb') as fp:
 				fp.write(part.get_payload(decode=True))
 	
 	if ( dateImport != "" and filename != "" ) :
 		print dateImport
 		# Appel de l'ocr sur l'image envoyée
-		process = subprocess.Popen( ['tesseract', '-psm', '4' ,filename, 'stdout'], stdout=subprocess.PIPE )
+		process = subprocess.Popen( ['tesseract', '-psm', '4' ,tempDir+"/"+filename, 'stdout'], stdout=subprocess.PIPE )
 		stdout, stderr = process.communicate()
-		
+		os.remove( tempDir+"/"+filename )
 		listeChampsOCR = dict()
 		
 		numligne = 0
@@ -68,7 +70,7 @@ if __name__ == "__main__":
 			
 			# 1,849,264 AP 12,400,000 AP-
 			# 6,022,816 AP [6,000,000 AP
-			m = re.search( '^([\d,]+) AP .+ AP', line )
+			m = re.search( '([\d,]+) AP .+ AP', line )
 			if ( m ) :
 				AP = m.group(1)
 				AP = AP.replace(",", "" )
